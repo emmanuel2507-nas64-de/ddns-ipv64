@@ -1,9 +1,9 @@
 # docker-ddns-ipv64
 
-[![Build Status](https://shields.cosanostra-cloud.de/drone/build/alcapone1933/docker-ddns-ipv64?logo=drone&server=https%3A%2F%2Fdrone.docker-for-life.de)](https://drone.docker-for-life.de/alcapone1933/docker-ddns-ipv64)
-[![Build Status Branch Master](https://shields.cosanostra-cloud.de/drone/build/alcapone1933/docker-ddns-ipv64/master?logo=drone&label=build%20%5Bbranch%20master%5D&server=https%3A%2F%2Fdrone.docker-for-life.de)](https://drone.docker-for-life.de/alcapone1933/docker-ddns-ipv64/branches)
-[![Docker Pulls](https://shields.cosanostra-cloud.de/docker/pulls/alcapone1933/ddns-ipv64?logo=docker&logoColor=blue)](https://hub.docker.com/r/alcapone1933/ddns-ipv64/tags)
-![Docker Image Version (latest semver)](https://shields.cosanostra-cloud.de/docker/v/alcapone1933/ddns-ipv64?sort=semver&logo=docker&logoColor=blue&label=dockerhub%20version)
+[![Build Status](https://shields.cosanostra-cloud.de/drone/build/emmanuel2507-nas64/docker-ddns-ipv64?logo=drone&server=https%3A%2F%2Fdrone.docker-for-life.de)](https://drone.docker-for-life.de/emmanuel2507-nas64/docker-ddns-ipv64)
+[![Build Status Branch Master](https://shields.cosanostra-cloud.de/drone/build/emmanuel2507-nas64/docker-ddns-ipv64/master?logo=drone&label=build%20%5Bbranch%20master%5D&server=https%3A%2F%2Fdrone.docker-for-life.de)](https://drone.docker-for-life.de/emmanuel2507-nas64/docker-ddns-ipv64/branches)
+[![Docker Pulls](https://shields.cosanostra-cloud.de/docker/pulls/emmanuel2507-nas64/ddns-ipv64?logo=docker&logoColor=blue)](https://hub.docker.com/r/emmanuel2507-nas64/ddns-ipv64/tags)
+![Docker Image Version (latest semver)](https://shields.cosanostra-cloud.de/docker/v/emmanuel2507-nas64/ddns-ipv64?sort=semver&logo=docker&logoColor=blue&label=dockerhub%20version)
 [![Website](https://shields.cosanostra-cloud.de/website?down_color=red&down_message=DOWN&label=Webseite%20IPV64.NET&up_color=green&up_message=UP&url=https%3A%2F%2Fipv64.net%2F)](https://ipv64.net/)
 
 &nbsp;
@@ -83,11 +83,8 @@ docker run -d \
     -e "CRON_TIME_DIG=*/30 * * * *" \
     -e "DOMAIN_KEY=1234567890abcdefghijklmnopqrstuvwxyz" \
     -e "DOMAIN_IPV64=deine-domain.ipv64.net" \
-    alcapone1933/ddns-ipv64:latest
-
     -e "DOMAIN_IPV64=deine-domain.ipv64.net,deine-domain.ipv64.de" \
     -e "DOMAIN_PRAEFIX_YES=yes" \
-    "⚠️ Hier bitte nur ein DOMAIN PRAEFIX (subdomain) eintragen (ersetzen) ⚠️"
     -e "DOMAIN_PRAEFIX=ddns" \
     -e "IP_CHECK=yes" \
     -e "SHOUTRRR_URL=" \
@@ -96,14 +93,12 @@ docker run -d \
     -e "NETWORK_CHECK=yes" \
     -e "PUID=1000" \
     -e "PGID=1000" \
-```
-
-## Docker Compose
-
-```yaml
+Docker Compose
+language-yaml
+ Copy code
 services:
   ddns-ipv64:
-    image: alcapone1933/ddns-ipv64:latest
+    image: emmanuel2507-nas64/ddns-ipv64:latest
     container_name: ddns-ipv64
     restart: unless-stopped
     environment:
@@ -123,52 +118,40 @@ services:
       # - "NETWORK_CHECK=yes"
       # - "PUID=1000"
       # - "PGID=1000"
-```
+ 
 
-&nbsp;
+Parameter "Lautstärke"
+Name (Beschreibung) #Optional	Wert	Norm
+Speicherort-Protokolle	Volumen	ddns-ipv64_data:/Daten
+/dein Pfad:/data
+ 
 
-***
+Parameter "env"
+Name (Beschreibung)	Wert	Norm	Beispiel
+Zeitzone	TZ	Europa/Berlin	Europa/Berlin
+Zeitliche Abfrage für die aktuelle IP	CRON_TIME	*/15 * * * *	*/15 * * * *
+Zeitliche Abfrage auf die Domain (dig DOMAIN_IPV64 A)	CRON_TIME_DIG	*/30 * * * *	*/30 * * * *
+DOMAIN KEY: DEIN DOMAIN KEY bzw. DynDNS Updatehash zu finden unter https://ipv64.net/dyndns	DOMAIN_KEY	------------------	Artikel-Nr.: 1234567890abcdefghijklmnopqrstuvwxyz
+DEINE DOMAIN: z.b. deine-domain.ipv64.net zu finden unter https://ipv64.net/dyndns	DOMAIN_IPV64	------------------	deine-domain.ipv64.net
+DEINE DOMAINS: z.B. deine-domain.ipv64.net, deine-domain.ipv64.de	DOMAIN_IPV64	------------------	deine-domain.ipv64.net,deine-domain.ipv64.de
+DOMAIN PRAEFIX YES: Damit wird das Domain PRAEFIX aktiv genutzt	DOMAIN_PRAEFIX_YES	Nein	ja (ja oder nein)
+DEIN DOMAIN PRAEFIX (subdomain): ⚠️ Nur ein Praefix verwenden ⚠️ z.b. ddns	DOMAIN_PRAEFIX	------------------	DDNS
+IP CHECK: Die IP-Adresse der Domain wird überprüft	IP_CHECK	ja	ja (ja oder nein)
+SHOUTRRR URL: Deine Shoutrrr URL als Benachrichtigungsdienst z.b ( gotify,discord,telegram,email)	SHOUTRRR_URL	------------------	Shoutrrr-Beispiele
+SHOUTRRR SKIP TEST: Beim Start des Containers wird keine Testnachricht gesendet	SHOUTRRR_SKIP_TEST	Nein	nein (ja oder nein)
+NAME SERVER: Der Nameserver, um die IP-Adresse Ihrer Domain zu überprüfen	NAME_SERVER	ns1.ipv64.net	ns1.ipv64.net (ns2.ipv64.net zb. 1.1.1.1)
+NETWORK CHECK: Es wird die Verbidung zu ipv64.net getestet	NETWORK_CHECK	ja	ja (ja oder nein)
+PUID: Rechte für Benutzer-ID des Ornder /data im Container	PUID	0	1000
+PGID: Rechte für Gruppen-ID des Ornder /data im Container	PGID	0	1000
+ 
 
-## Volume Parameter
-
-| Name (Beschreibung) #Optional | Wert    | Standard              |
-| ----------------------------- | ------- | --------------------- |
-| Speicherort logs              | volume  | ddns-ipv64_data:/data |
-|                               |         | /dein Pfad:/data      |
-
-&nbsp;
-
-## Env Parameter
-
-| Name (Beschreibung)                                                                               | Wert               | Standard           | Beispiel                                     |
-| ------------------------------------------------------------------------------------------------- | ------------------ | ------------------ | -------------------------------------------- |
-| Zeitzone                                                                                          | TZ                 | Europe/Berlin      | Europe/Berlin                                |
-| Zeitliche Abfrage für die aktuelle IP                                                             | CRON_TIME          | */15 * * * *       | */15 * * * *                                 |
-| Zeitliche Abfrage auf die Domain (dig DOMAIN_IPV64 A)                                             | CRON_TIME_DIG      | */30 * * * *       | */30 * * * *                                 |
-| DOMAIN KEY: DEIN DOMAIN KEY bzw. DynDNS Updatehash zu finden unter https://ipv64.net/dyndns       | DOMAIN_KEY         | ------------------ | 1234567890abcdefghijklmnopqrstuvwxyz         |
-| DEINE DOMAIN:  z.b. deine-domain.ipv64.net zu finden unter         https://ipv64.net/dyndns       | DOMAIN_IPV64       | ------------------ | deine-domain.ipv64.net                       |
-| DEINE DOMAINS: z.b. deine-domain.ipv64.net, deine-domain.ipv64.de                                 | DOMAIN_IPV64       | ------------------ | deine-domain.ipv64.net,deine-domain.ipv64.de |
-| DOMAIN PRAEFIX YES: Damit wird das Domain PRAEFIX aktiv genutzt                                   | DOMAIN_PRAEFIX_YES | no                 | yes    (yes oder no)                         |
-| DEIN DOMAIN PRAEFIX (subdomain): ⚠️ Nur ein Praefix verwenden ⚠️ z.b. ddns                       | DOMAIN_PRAEFIX     | ------------------ | ddns                                         |
-| IP CHECK: Die IP-Adresse der Domain wird überprüft                                                | IP_CHECK           | yes                | yes    (yes oder no)                         |
-| SHOUTRRR URL: Deine Shoutrrr URL als Benachrichtigungsdienst z.b ( gotify,discord,telegram,email) | SHOUTRRR_URL       | ------------------ | [Shoutrrr-Beispiele](#shoutrrr-beispiele)    |
-| SHOUTRRR SKIP TEST: Beim Start des Containers wird keine Testnachricht gesendet                   | SHOUTRRR_SKIP_TEST | no                 | no     (yes oder no)                         |
-| NAME SERVER: Der Nameserver, um die IP-Adresse Ihrer Domain zu überprüfen                         | NAME_SERVER        | ns1.ipv64.net      | ns1.ipv64.net (ns2.ipv64.net  zb. 1.1.1.1)   |
-| NETWORK CHECK: Es wird die Verbidung zu ipv64.net getestet                                        | NETWORK_CHECK      | yes                | yes    (yes oder no)                         |
-| PUID: Rechte für Benutzer-ID des Ornder /data im Container                                        | PUID               | 0                  | 1000                                         |
-| PGID: Rechte für Gruppen-ID des Ornder /data im Container                                         | PGID               | 0                  | 1000                                         |
-
-* * *
-
-&nbsp;
-
-## Shoutrrr Beispiele
-
-Die Nachricht wird fest vom Script erstellt. \
-Sie können den Betreff (titel) frei wählen wie im Beispiel genannt. \
+Shoutrrr Beispiele
+Die Nachricht wird fest vom Script erstellt.
+Sie können den Betreff (Titel) frei wählen, wie im Beispiel genannt.
 So könnte die Nachricht ausehen.
 
-```txt
+language-txt
+ Copy code
 Betreff:   DDNS IPV64 IP UPDATE
 # Die Nachricht wird fest vom Script erstellt.
 Nachricht: DOCKER DDNS UPDATER IPV64.NET - IP UPDATE !!!
@@ -186,31 +169,24 @@ Nachricht: DOCKER DDNS UPDATER IPV64.NET - IP UPDATE !!!
            2022-12-27 14:40:59  UPDATE !!!
            Update IP=1.0.0.1 - Alte-IP=1.1.1.1
            DOMAIN mit PRAEFIX: ddnd.deine-domain.ipv64.net
-```
+Das sind Beispiele für Shoutrrr als Benachrichtigungsdienst, für weitere Services infos fidetest du hier Shoutrrr
 
-Das sind Beispiele für Shoutrrr als Benachrichtigungsdienst, für weitere Services infos fidetest du hier [Shoutrrr](https://containrrr.dev/shoutrrr/latest/services/overview/)
+Name des Dienstes	URL Beispiel
+Gotify	gotify://<url domain.de>/<token>/?title=<title>&priority=<priority>
+Zwietracht	discord://<token>@<webhook id>?title=<title>
+Telegramm	telegram://<token>@telegram/?chats=<chad_id>&title=<title>
+SMTP (E-Mail)	smtp://<username>:<password>@<host>:<port>/?from=<sender_email>&to=<to_email>&subject=<subject>
+Name des Dienstes	URL Beispiel (Beispiel text)
+Gotify	gotify://domain.de/123456abc/?title=DDNS+IPV64+IP+UPDATE&priority=5
+Zwietracht	discord://123456abc@555555555555555?title=DDNS+IPV64+IP+UPDATE
+Telegramm	telegram://1111111111:123456abc@telegram/?chats=5555555555&title=DDNS+IPV64+IP+UPDATE
+SMTP (E-Mail)	smtp://noreply@domain.de:password@mail.domain.de:587/?from=noreply@domain.de&to=user@domain.de&subject=DDNS+IPV64+IP+UPDATE
+ 
 
-| Service Name | URL Beispiel                                                                                      |
-| ------------ | ------------------------------------------------------------------------------------------------- |
-| gotify       | `gotify://<url domain.de>/<token>/?title=<title>&priority=<priority>`                             |
-| discord      | `discord://<token>@<webhook id>?title=<title>`                                                    |
-| telegram     | `telegram://<token>@telegram/?chats=<chad_id>&title=<title>`                                      |
-| smtp (email) | `smtp://<username>:<password>@<host>:<port>/?from=<sender_email>&to=<to_email>&subject=<subject>` |
-
-
-| Service Name | URL Beispiel (Beispiel text)                                                                                                  |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| gotify       | `gotify://domain.de/123456abc/?title=DDNS+IPV64+IP+UPDATE&priority=5`                                                         |
-| discord      | `discord://123456abc@555555555555555?title=DDNS+IPV64+IP+UPDATE`                                                              |
-| telegram     | `telegram://1111111111:123456abc@telegram/?chats=5555555555&title=DDNS+IPV64+IP+UPDATE`                                       |
-| smtp (email) | `smtp://noreply@domain.de:password@mail.domain.de:587/?from=noreply@domain.de&to=user@domain.de&subject=DDNS+IPV64+IP+UPDATE` |
-
-&nbsp;
-
-### Du kannst die Shoutrrr URL auch generieren lassen
-
-```bash
-# $ docker run --rm -it alcapone1933/shoutrrr generate
+Du kannst die Shoutrrr URL auch generieren lassen
+language-bash
+ Copy code
+# $ docker run --rm -it emmanuel2507-nas64/shoutrrr generate
 #Error: no service specified
 #Usage:
 #  shoutrrr generate [flags]
@@ -224,26 +200,22 @@ Das sind Beispiele für Shoutrrr als Benachrichtigungsdienst, für weitere Servi
 #Available services:
 #  opsgenie, slack, teams, generic, googlechat, join, bark, logger, matrix, discord, mattermost, rocketchat, pushbullet, pushover, smtp, telegram, zulip, gotify, hangouts, ifttt
 
-# docker run --rm -it alcapone1933/shoutrrr generate gotify
+# docker run --rm -it emmanuel2507-nas64/shoutrrr generate gotify
 
-docker run --rm -it alcapone1933/shoutrrr generate
+docker run --rm -it emmanuel2507-nas64/shoutrrr generate
 
 # TEST
-# $ docker run --rm -it alcapone1933/shoutrrr send --verbose --url "< Shoutrrr URL >" --message "DOCKER DDNS UPDATER IPV64.NET"
+# $ docker run --rm -it emmanuel2507-nas64/shoutrrr send --verbose --url "< Shoutrrr URL >" --message "DOCKER DDNS UPDATER IPV64.NET"
 
-docker run --rm -it alcapone1933/shoutrrr send --verbose --url "< Shoutrrr URL >" --message "DOCKER DDNS UPDATER IPV64.NET"
-```
-
-<details>
-<summary markdown="span">DEMO Shoutrrr URL generieren</summary>
+docker run --rm -it emmanuel2507-nas64/shoutrrr send --verbose --url "< Shoutrrr URL >" --message "DOCKER DDNS UPDATER IPV64.NET"
+<Details> <summary markdown="span">DEMO Shoutrrr URL generieren</summary>
 
 <img src="demo/shoutrrr-demo.gif" width="1050" height="400">
 
-</details>
+</Details>
 
-&nbsp;
+ 
 
-## DEMO
-
+DEMO
 <img src="demo/demo.gif" width="700" height="400">
 
