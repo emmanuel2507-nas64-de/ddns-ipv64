@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>ddns-ipv64-update</Name>
-  <Repository>alcapone1933/ddns-ipv64:latest</Repository>
-  <Registry>https://hub.docker.com/r/alcapone1933/ddns-ipv64</Registry>
+  <Repository>emmanuel2507-nas64/ddns-ipv64:latest</Repository>
+  <Registry>https://hub.docker.com/r/emmanuel2507-nas64/ddns-ipv64</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
   <Support/>
-  <Project>https://github.com/alcapone1933/docker-ddns-ipv64</Project>
-  <Overview>#### DDNS Updater in Docker f&#xFC;r Free DynDNS IPv64.net (https://ipv64.net/) - NUR F&#xDC;R IPV4 -&#xD;
+  <Project>https://github.com/emmanuel2507-nas64/docker-ddns-ipv64</Project>
+  <Overview>#### DDNS Updater in Docker for Free DynDNS IPv64.net (https://ipv64.net/) - ONLY FOR IPV4 -&#xD;
 </Overview>
   <Category>Cloud: Network:DNS</Category>
   <WebUI/>
   <TemplateURL/>
-  <Icon>https://raw.githubusercontent.com/alcapone1933/unraid-templates/master/alcapone1933/images/ddns-ipv64.jpg</Icon>
+  <Icon>https://raw.githubusercontent.com/emmanuel2507-nas64/unraid-templates/master/emmanuel2507-nas64/images/ddns-ipv64.jpg</Icon>
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>
@@ -23,18 +23,18 @@
   <DonateLink/>
   <Requires/>
   <Config Name="Appdata" Target="/data" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false"/>
-  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="" Description="Zeitzone" Type="Variable" Display="always" Required="true" Mask="false">Europe/Berlin</Config>
-  <Config Name="CRON_TIME" Target="CRON_TIME" Default="*/15 * * * *" Mode="" Description="Zeitliche Abfrage f&#xFC;r die aktuelle IP" Type="Variable" Display="always" Required="true" Mask="false">*/15 * * * *</Config>
-  <Config Name="CRON_TIME_DIG" Target="CRON_TIME_DIG" Default="*/30 * * * *" Mode="" Description="Zeitliche Abfrage auf die Domain (dig DOMAIN_IPV64 A)" Type="Variable" Display="always" Required="true" Mask="false">*/30 * * * *</Config>
-  <Config Name="DOMAIN_KEY" Target="DOMAIN_KEY" Default="1234567890abcdefghijklmnopqrstuvwxyz" Mode="" Description="DOMAIN KEY: DEIN DOMAIN KEY bzw. DynDNS Updatehash zu finden unter https://ipv64.net/dyndns" Type="Variable" Display="always" Required="true" Mask="true">1234567890abcdefghijklmnopqrstuvwxyzopqrstuvwxyz</Config>
-  <Config Name="DOMAIN_IPV64" Target="DOMAIN_IPV64" Default="deine-domain.ipv64.net" Mode="" Description="DEINE DOMAIN: z.b. deine-domain.ipv64.net zu finden unter https://ipv64.net/dyndns" Type="Variable" Display="always" Required="true" Mask="false">deine-domain.ipv64.net</Config>
-  <Config Name="DOMAIN_PRAEFIX" Target="DOMAIN_PRAEFIX" Default="ddns" Mode="" Description="DEIN DOMAIN PRAEFIX (subdomain) : &#x26A0;&#xFE0F; Nur ein Praefix verwenden &#x26A0;&#xFE0F; z.b. ddns" Type="Variable" Display="always" Required="false" Mask="false">ddns</Config>
-  <Config Name="DOMAIN_PRAEFIX_YES" Target="DOMAIN_PRAEFIX_YES" Default="no|yes" Mode="" Description="Standard: no;&#13;&#10;DOMAIN PRAEFIX YES: Damit wird das Domain PRAEFIX aktiv genutzt&#13;&#10;Standard: no" Type="Variable" Display="always" Required="false" Mask="false">no</Config>
-  <Config Name="IP_CHECK" Target="IP_CHECK" Default="yes|no" Mode="" Description="Die IP-Adresse der Domain wird &#xFC;berpr&#xFC;ft" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
-  <Config Name="SHOUTRRR_URL" Target="SHOUTRRR_URL" Default="" Mode="" Description="SHOUTRRR URL: Deine Shoutrrr URL als Benachrichtigungsdienst z.b ( gotify,discord,telegram,email)&#13;&#10;https://containrrr.dev/shoutrrr/latest/services/overview/" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="" Description="Time Zone" Type="Variable" Display="always" Required="true" Mask="false">Europe/Berlin</Config>
+  <Config Name="CRON_TIME" Target="CRON_TIME" Default="*/15 * * * *" Mode="" Description="Time interval for current IP check" Type="Variable" Display="always" Required="true" Mask="false">*/15 * * * *</Config>
+  <Config Name="CRON_TIME_DIG" Target="CRON_TIME_DIG" Default="*/30 * * * *" Mode="" Description="Time interval for domain check (dig DOMAIN_IPV64 A)" Type="Variable" Display="always" Required="true" Mask="false">*/30 * * * *</Config>
+  <Config Name="DOMAIN_KEY" Target="DOMAIN_KEY" Default="1234567890abcdefghijklmnopqrstuvwxyz" Mode="" Description="DOMAIN KEY: Your domain key or DynDNS update hash found at https://ipv64.net/dyndns" Type="Variable" Display="always" Required="true" Mask="true">1234567890abcdefghijklmnopqrstuvwxyzopqrstuvwxyz</Config>
+  <Config Name="DOMAIN_IPV64" Target="DOMAIN_IPV64" Default="your-domain.ipv64.net" Mode="" Description="YOUR DOMAIN: e.g., your-domain.ipv64.net found at https://ipv64.net/dyndns" Type="Variable" Display="always" Required="true" Mask="false">your-domain.ipv64.net</Config>
+  <Config Name="DOMAIN_PRAEFIX" Target="DOMAIN_PRAEFIX" Default="ddns" Mode="" Description="YOUR DOMAIN PREFIX (subdomain): ⚠️ Use only one prefix ⚠️ e.g., ddns" Type="Variable" Display="always" Required="false" Mask="false">ddns</Config>
+  <Config Name="DOMAIN_PRAEFIX_YES" Target="DOMAIN_PRAEFIX_YES" Default="no|yes" Mode="" Description="Default: no; DOMAIN PREFIX YES: This activates the domain prefix usage. Default: no" Type="Variable" Display="always" Required="false" Mask="false">no</Config>
+  <Config Name="IP_CHECK" Target="IP_CHECK" Default="yes|no" Mode="" Description="The IP address of the domain will be checked" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
+  <Config Name="SHOUTRRR_URL" Target="SHOUTRRR_URL" Default="" Mode="" Description="SHOUTRRR URL: Your Shoutrrr URL as a notification service e.g. (gotify, discord, telegram, email) https://containrrr.dev/shoutrrr/latest/services/overview/" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="SHOUTRRR_SKIP_TEST" Target="SHOUTRRR_SKIP_TEST" Default="no|yes" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="false">no</Config>
-  <Config Name="NAME_SERVER" Target="NAME_SERVER" Default="ns1.ipv64.net" Mode="" Description="Der Nameserver, um die IP-Adresse Ihrer Domain zu &#xFC;berpr&#xFC;fen" Type="Variable" Display="always" Required="true" Mask="false">ns1.ipv64.net</Config>
-  <Config Name="NETWORK_CHECK" Target="NETWORK_CHECK" Default="yes|no" Mode="" Description="Es wird die Verbidung zu ipv64.net getestet" Type="Variable" Display="always" Required="true" Mask="false">yes</Config>
-  <Config Name="PUID" Target="PUID" Default="0" Mode="" Description="Rechte f&#xFC;r Benutzer-ID des Ornder /data im Container" Type="Variable" Display="always" Required="false" Mask="false">99</Config>
-  <Config Name="PGID" Target="PGID" Default="0" Mode="" Description="PGID: Rechte f&#xFC;r Gruppen-ID des Ornder /data im Container" Type="Variable" Display="always" Required="false" Mask="false">100</Config>
+  <Config Name="NAME_SERVER" Target="NAME_SERVER" Default="ns1.ipv64.net" Mode="" Description="The nameserver to check the IP address of your domain" Type="Variable" Display="always" Required="true" Mask="false">ns1.ipv64.net</Config>
+  <Config Name="NETWORK_CHECK" Target="NETWORK_CHECK" Default="yes|no" Mode="" Description="Connection to ipv64.net will be tested" Type="Variable" Display="always" Required="true" Mask="false">yes</Config>
+  <Config Name="PUID" Target="PUID" Default="0" Mode="" Description="Permissions for user ID of the folder /data in the container" Type="Variable" Display="always" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="0" Mode="" Description="PGID: Permissions for group ID of the folder /data in the container" Type="Variable" Display="always" Required="false" Mask="false">100</Config>
 </Container>
